@@ -1,0 +1,58 @@
+appId: example-app
+
+versionFetching:
+  fetchType: FETCH_NGINX
+  nginx:
+    dirUrl : http://localhost:2301/app-deploy/mock/nginx
+    authRef: auth-example-basic-1
+    prefix : example-app-
+    suffix : .jar
+
+artifact:
+  artifactUrl : http://localhost:2301/app-deploy/mock/jar-release/example-app-{{ APP_VERSION }}.jar
+  authRef     : auth-example-basic-1
+
+envs:
+  - envName: test
+    instances:
+      - instanceName: test-1
+        appStatus:
+          url: http://localhost:2301/app-deploy/mock/app-status
+          authRef: auth-example-bearer-token-1
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-1
+            authRef : auth-example-api-key-1
+
+      - instanceName: test-2
+        appStatus:
+          url: http://localhost:2301/app-deploy/mock/app-status
+          authRef: auth-example-bearer-token-1
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-2
+            authRef : auth-example-api-key-1
+
+  - envName: production
+    instances:
+      - instanceName: prod-1
+        appStatus:
+          url: http://localhost:2301/app-deploy/mock/app-status
+          authRef: auth-example-bearer-token-1
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-1
+            authRef : auth-example-api-key-1
+
+      - instanceName: prod-2
+        appStatus:
+          url: http://localhost:2301/app-deploy/mock/app-status
+          authRef: auth-example-bearer-token-1
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-2
+            authRef : auth-example-api-key-1
