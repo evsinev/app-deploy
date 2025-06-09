@@ -3,6 +3,8 @@ package com.acme.appdeploy;
 
 import com.acme.appdeploy.mock.MockAppStatusServlet;
 import com.acme.appdeploy.mock.MockNginxServlet;
+import com.acme.appdeploy.servlet.ApiExceptionJsonHandler;
+import com.acme.appdeploy.servlet.PreventStackTraceJsonFilter;
 import com.acme.appdeploy.ui.service.app.IUiAppService;
 import com.acme.appdeploy.ui.service.app.model.ArnViewRequest;
 import com.acme.appdeploy.ui.service.appstatus.IUiAppStatusService;
@@ -16,10 +18,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.payneteasy.apiservlet.GsonJettyContextHandler;
 import com.payneteasy.apiservlet.VoidRequest;
-import com.payneteasy.jetty.util.*;
+import com.payneteasy.jetty.util.HealthServlet;
+import com.payneteasy.jetty.util.JettyContextOption;
+import com.payneteasy.jetty.util.JettyServer;
+import com.payneteasy.jetty.util.JettyServerBuilder;
 import com.payneteasy.mini.core.app.AppContext;
 import com.payneteasy.mini.core.app.AppRunner;
-import com.payneteasy.mini.core.error.handler.ApiExceptionHandler;
 import com.payneteasy.mini.core.error.handler.ApiRequestValidator;
 import org.eclipse.jetty.ee8.servlet.ServletContextHandler;
 
@@ -40,7 +44,7 @@ public class AppDeployApplication {
                 .startupParameters(config)
                 .contextOption(JettyContextOption.SESSIONS)
 
-                .filter("/*", new PreventStackTraceFilter())
+                .filter("/*", new PreventStackTraceJsonFilter())
 
                 .servlet("/health", new HealthServlet())
 
@@ -64,7 +68,7 @@ public class AppDeployApplication {
         GsonJettyContextHandler gsonHandler = new GsonJettyContextHandler(
                 servletContextHandler
                 , gson
-                , new ApiExceptionHandler()
+                , new ApiExceptionJsonHandler()
                 , new ApiRequestValidator()
         );
 
