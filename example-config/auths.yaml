@@ -1,11 +1,11 @@
 auths:
-  - authId   : auth-example-basic
+  - authId   : auth-example-basic-1
     authType : AUTH_BASIC
     basic:
       username: username-1
       password: password-1
 
-  - authId      : auth-example-bearer-token
+  - authId      : auth-example-bearer-token-1
     authType    : BEARER_TOKEN
     bearerToken : bearer-token-1
 

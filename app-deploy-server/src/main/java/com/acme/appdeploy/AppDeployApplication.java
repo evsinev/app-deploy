@@ -1,8 +1,9 @@
 package com.acme.appdeploy;
 
 
+import com.acme.appdeploy.mock.MockAppStatusServlet;
+import com.acme.appdeploy.mock.MockNginxServlet;
 import com.acme.appdeploy.ui.service.app.IUiAppService;
-import com.acme.appdeploy.ui.service.app.impl.UiAppServiceImpl;
 import com.acme.appdeploy.ui.service.app.model.ArnViewRequest;
 import com.acme.appdeploy.ui.service.appstatus.IUiAppStatusService;
 import com.acme.appdeploy.ui.service.deploy.IUiDeployService;
@@ -35,7 +36,7 @@ public class AppDeployApplication {
 
         AppDeployFactory factory = new AppDeployFactory(config);
 
-        JettyServer jetty = new JettyServerBuilder()
+        JettyServerBuilder jettyBuilder = new JettyServerBuilder()
                 .startupParameters(config)
                 .contextOption(JettyContextOption.SESSIONS)
 
@@ -43,11 +44,15 @@ public class AppDeployApplication {
 
                 .servlet("/health", new HealthServlet())
 
-                .contextListener(servletContextHandler -> configureContext(servletContextHandler, config, factory))
-                .build();
+                .contextListener(servletContextHandler -> configureContext(servletContextHandler, config, factory));
 
+        if (config.isExampleMockEnabled()) {
+            jettyBuilder.servlet("/mock/nginx", new MockNginxServlet());
+            jettyBuilder.servlet("/mock/app-status/*", new MockAppStatusServlet());
+        }
+
+        JettyServer jetty = jettyBuilder.build();
         jetty.startJetty();
-
     }
 
     private static void configureContext(ServletContextHandler servletContextHandler, IStartupConfig config, AppDeployFactory aFactory) {

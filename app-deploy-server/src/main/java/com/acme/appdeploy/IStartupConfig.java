@@ -28,7 +28,7 @@ public interface IStartupConfig extends IJettyStartupParameters {
     @AStartupParameter(name = "APP_DEPLOY_DATABASE", value = "./target/database")
     File databaseDir();
 
-    @AStartupParameter(name = "EXAMPLE_APPS_MOCK", value = "false")
-    boolean exampleAppsMock();
+    @AStartupParameter(name = "EXAMPLE_MOCK_ENABLED", value = "false")
+    boolean isExampleMockEnabled();
 
 }
