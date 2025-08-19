@@ -9,9 +9,9 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @Builder
-public class TVersionFetching {
-    VersionFetchingType              type;
-
-    TVersionFetchingNginx            nginx;
-    TVersionFetchingMavenMetadataXml mavenMetadataXml;
+public class TVersionFetchingNginx {
+    String dirUrl;
+    String prefix;
+    String suffix;
+    String authRef;
 }

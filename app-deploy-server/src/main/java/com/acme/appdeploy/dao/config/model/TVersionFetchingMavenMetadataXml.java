@@ -9,9 +9,10 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @Builder
-public class TNginxVersionFetching {
-    String dirUrl;
+public class TVersionFetchingMavenMetadataXml {
+    String url;
     String prefix;
-    String suffix;
+    String removePrefix;
+    String removeSuffix;
     String authRef;
 }

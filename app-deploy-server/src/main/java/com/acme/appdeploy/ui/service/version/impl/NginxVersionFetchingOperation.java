@@ -2,7 +2,7 @@ package com.acme.appdeploy.ui.service.version.impl;
 
 import com.acme.appdeploy.dao.config.entity.TAuth;
 import com.acme.appdeploy.dao.config.entity.TAuthBasic;
-import com.acme.appdeploy.dao.config.model.TNginxVersionFetching;
+import com.acme.appdeploy.dao.config.model.TVersionFetchingNginx;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 import com.acme.appdeploy.util.SafeStringTokenizer;
 import org.slf4j.Logger;
@@ -18,6 +18,7 @@ import java.util.Base64;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static com.acme.appdeploy.util.HttpAuths.fetchHttpWithAuth;
 import static com.acme.appdeploy.util.SizeFormatter.formatSize;
 import static com.acme.appdeploy.util.VersionNumbers.versionNumber;
 
@@ -30,29 +31,8 @@ public class NginxVersionFetchingOperation {
             .followRedirects(HttpClient.Redirect.NEVER)
             .build();
 
-    public List<AppVersionItem> fetchVersions(TNginxVersionFetching aNginx, TAuth aAuth) {
-
-        HttpRequest httpRequest = addAuth(
-                aAuth
-                , HttpRequest.newBuilder()
-                    .GET()
-                    .uri(URI.create(aNginx.getDirUrl()))
-                    .timeout(Duration.ofSeconds(20))
-                )
-                .build();
-
-        LOG.debug("Fetching versions from {}", aNginx.getDirUrl());
-
-        HttpResponse<String> httpResponse;
-        try {
-            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Cannot fetch " + aNginx.getDirUrl(), e);
-        }
-
-        if (httpResponse.statusCode() != 200) {
-            throw new IllegalArgumentException("Cannot fetch " + aNginx.getDirUrl() + " - " + httpResponse.statusCode());
-        }
+    public List<AppVersionItem> fetchVersions(TVersionFetchingNginx aNginx, TAuth aAuth) {
+        HttpResponse<String> httpResponse = fetchHttpWithAuth(aAuth, aNginx.getDirUrl(), httpClient);
 
         return parseHtml(httpResponse.body(), aNginx.getPrefix(), aNginx.getSuffix());
     }
@@ -108,13 +88,4 @@ public class NginxVersionFetchingOperation {
                 .build();
     }
 
-    private HttpRequest.Builder addAuth(TAuth aAuth, HttpRequest.Builder aRequest) {
-        TAuthBasic basic                   = aAuth.getBasic();
-        String     usernamePassword        = basic.getUsername() + ":" + basic.getPassword();
-        String     encodedUsernamePassword = Base64.getEncoder().encodeToString(usernamePassword.getBytes());
-
-        aRequest.header("Authorization", "Basic " + encodedUsernamePassword);
-
-        return aRequest;
-    }
 }

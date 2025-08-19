@@ -8,6 +8,8 @@ import com.acme.appdeploy.ui.service.app.model.ArnViewRequest;
 import com.acme.appdeploy.util.ArnAppInstance;
 import com.payneteasy.apiservlet.VoidRequest;
 
+import java.time.Duration;
+
 import static com.acme.appdeploy.util.Arns.parseArnInstance;
 
 public class UiAppServiceImpl implements IUiAppService {
@@ -30,8 +32,20 @@ public class UiAppServiceImpl implements IUiAppService {
         );
     }
 
+    private void debugSleep() {
+
+        try {
+            Thread.sleep(Duration.ofSeconds(1));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+//        throw new IllegalStateException("For debugging only");
+    }
+
     @Override
     public UiAppViewResponse viewApp(ArnViewRequest aRequest) {
+        debugSleep();
+
         ArnAppInstance        arnAppInstance = parseArnInstance(aRequest.getArn());
         AppInstanceFindResult appInstance    = new AppFinder(appDao.listAllApps()).findAppInstance(arnAppInstance);
 

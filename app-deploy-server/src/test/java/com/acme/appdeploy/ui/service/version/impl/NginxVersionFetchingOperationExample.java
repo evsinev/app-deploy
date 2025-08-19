@@ -3,7 +3,7 @@ package com.acme.appdeploy.ui.service.version.impl;
 import com.acme.appdeploy.dao.config.entity.TAuth;
 import com.acme.appdeploy.dao.config.entity.TAuthBasic;
 import com.acme.appdeploy.dao.config.model.AuthType;
-import com.acme.appdeploy.dao.config.model.TNginxVersionFetching;
+import com.acme.appdeploy.dao.config.model.TVersionFetchingNginx;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class NginxVersionFetchingOperationExample {
         NginxVersionFetchingOperation operation = new NginxVersionFetchingOperation();
 
         List<AppVersionItem> versions = operation.fetchVersions(
-                TNginxVersionFetching.builder()
+                TVersionFetchingNginx.builder()
                         .dirUrl(args[0])
                         .prefix(args[1])
                         .suffix(args[2])

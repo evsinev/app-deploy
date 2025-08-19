@@ -77,4 +77,8 @@ public class SafeStringTokenizer {
         }
         return list;
     }
+
+    public List<String> toList() {
+        return null;
+    }
 }

@@ -2,6 +2,7 @@ package com.acme.appdeploy.ui.service.appstatus.impl;
 
 import com.acme.appdeploy.dao.config.IConfigAppDao;
 import com.acme.appdeploy.dao.config.IConfigAuthDao;
+import com.acme.appdeploy.dao.config.model.AppStatusType;
 import com.acme.appdeploy.dao.config.model.TAppStatus;
 import com.acme.appdeploy.service.appstatus.IAppStatusClient;
 import com.acme.appdeploy.service.appstatus.impl.AppStatusClientImpl;
@@ -29,7 +30,7 @@ public class UiAppStatusServiceImpl implements IUiAppStatusService {
 
     @Override
     public UiAppStatusResponse getInstanceStatus(ArnViewRequest aRequest) {
-        AppFinder             appFinder   = new AppFinder(appDao.listAllApps());
+        AppFinder appFinder = new AppFinder(appDao.listAllApps());
 
         AppInstanceFindResult appInstance;
         try {
@@ -41,7 +42,7 @@ public class UiAppStatusServiceImpl implements IUiAppStatusService {
                     .build();
         }
 
-        TAppStatus            appStatus   = appInstance.getAppInstance().getAppStatus();
+        TAppStatus appStatus = appInstance.getAppInstance().getAppStatus();
 
         if (appStatus == null) {
             return UiAppStatusResponse.builder()
@@ -50,8 +51,13 @@ public class UiAppStatusServiceImpl implements IUiAppStatusService {
                     .build();
         }
 
-        String            bearerToken       = authDao.findAuthById(appStatus.getAuthRef()).getBearerToken();
-        AppStatusResponse appStatusResponse = client.getAppStatus(appStatus.getUrl(), bearerToken);
+        AppStatusResponse appStatusResponse;
+        if (appStatus.getType() == AppStatusType.VERSION_TXT) {
+            appStatusResponse = client.getVersionTxt(appStatus.getUrl());
+        } else {
+            String bearerToken = authDao.findAuthById(appStatus.getAuthRef()).getBearerToken();
+            appStatusResponse = client.getAppStatus(appStatus.getUrl(), bearerToken);
+        }
 
         return mapToResponse(appStatusResponse, System.currentTimeMillis());
     }

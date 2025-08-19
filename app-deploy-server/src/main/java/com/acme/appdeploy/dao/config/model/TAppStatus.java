@@ -10,6 +10,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @Builder
 public class TAppStatus {
-    String url;
-    String  authRef;
+    AppStatusType type;
+    String        url;
+    String        authRef;
 }

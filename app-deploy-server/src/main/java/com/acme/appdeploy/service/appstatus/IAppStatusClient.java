@@ -6,4 +6,6 @@ public interface IAppStatusClient {
 
     AppStatusResponse getAppStatus(String aUrl, String aBearerToken);
 
+    AppStatusResponse getVersionTxt(String aUrl);
+
 }

@@ -13,6 +13,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+import static com.payneteasy.jetty.util.Strings.isEmpty;
+
 public class AppStatusClientImpl implements IAppStatusClient {
 
     private static final Logger LOG = LoggerFactory.getLogger( AppStatusClientImpl.class );
@@ -52,5 +54,46 @@ public class AppStatusClientImpl implements IAppStatusClient {
         }
 
         return gson.fromJson(httpResponse.body(), AppStatusResponse.class);
+    }
+
+    @Override
+    public AppStatusResponse getVersionTxt(String aUrl) {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create(aUrl))
+                .timeout(Duration.ofSeconds(10))
+                .build();
+
+        HttpResponse<String> httpResponse;
+        try {
+            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        } catch (Exception e) {
+            LOG.error("Cannot perform health check for url {}", aUrl, e);
+            return AppStatusResponse.builder()
+                    .type(AppStatusResponseType.ERROR)
+                    .errorMessage(e.getMessage())
+                    .build();
+        }
+
+        if (httpResponse.statusCode() != 200 && httpResponse.statusCode() != AppStatusResponseType.NOT_MATCHED.httpStatus()) {
+            return AppStatusResponse.builder()
+                    .type(AppStatusResponseType.ERROR)
+                    .errorMessage("Wrong status code: " + httpResponse.statusCode())
+                    .build();
+        }
+
+        String version = httpResponse.body();
+
+        if (isEmpty(version)) {
+            return AppStatusResponse.builder()
+                    .type         ( AppStatusResponseType.ERROR )
+                    .errorMessage ( "Version is empty"          )
+                    .build();
+        }
+
+        return AppStatusResponse.builder()
+                .type       ( AppStatusResponseType.OK )
+                .appVersion ( version                  )
+                .build();
     }
 }
