@@ -10,6 +10,7 @@
     <modules>
         <module>app-deploy-config</module>
         <module>app-deploy-server</module>
+        <module>app-deploy-validator</module>
     </modules>
 
     <properties>
