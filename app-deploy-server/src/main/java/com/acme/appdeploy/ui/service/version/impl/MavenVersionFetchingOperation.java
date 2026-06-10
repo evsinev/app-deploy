@@ -39,9 +39,14 @@ public class MavenVersionFetchingOperation {
 
         return extractVersions(httpResponse.body())
                 .stream()
-                .filter(it -> filterVersion(it, aMaven.getPrefix()))
+                .filter(it -> logFilter(it, aMaven.getPrefix(), filterVersion(it, aMaven.getPrefix())))
                 .map(it -> toItem(it, aMaven.getRemovePrefix(), aMaven.getRemoveSuffix()))
                 .toList();
+    }
+
+    private boolean logFilter(String aVersion, String aMavenPrefix, boolean aResult) {
+        LOG.debug("Filtering version:{}, prefix:{}, result = {}", aVersion, aMavenPrefix, aResult);
+        return aResult;
     }
 
     private boolean filterVersion(String version, String prefix) {

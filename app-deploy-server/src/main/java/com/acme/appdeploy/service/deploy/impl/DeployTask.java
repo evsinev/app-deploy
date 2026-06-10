@@ -101,6 +101,7 @@ public class DeployTask implements Runnable {
         HttpRequest request = httpService.newHttpRquestBuilder(artifact.getAuthRef())
                 .uri(URI.create(artifactUrl))
                 .GET()
+                .timeout(Duration.ofMinutes(2))
                 .build();
 
         File file;

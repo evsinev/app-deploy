@@ -30,6 +30,6 @@ public class ConfigAuthDaoImpl implements IConfigAuthDao {
                 .stream()
                 .filter(it -> it.getAuthId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Cannot find auth with id " + id));
+                .orElseThrow(() -> new IllegalStateException("Cannot find auth with id = '" + id + "'"));
     }
 }
