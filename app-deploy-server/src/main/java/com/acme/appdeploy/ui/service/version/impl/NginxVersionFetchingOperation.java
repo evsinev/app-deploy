@@ -1,20 +1,15 @@
 package com.acme.appdeploy.ui.service.version.impl;
 
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.entity.TAuthBasic;
-import com.acme.appdeploy.dao.config.model.TVersionFetchingNginx;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.model.TVersionFetchingNginx;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 import com.acme.appdeploy.util.SafeStringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.StringTokenizer;
 

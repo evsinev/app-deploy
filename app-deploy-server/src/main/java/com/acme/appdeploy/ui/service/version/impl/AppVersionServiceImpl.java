@@ -1,11 +1,10 @@
 package com.acme.appdeploy.ui.service.version.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
-import com.acme.appdeploy.dao.config.IConfigAuthDao;
-import com.acme.appdeploy.dao.config.entity.TApp;
-import com.acme.appdeploy.dao.config.model.TVersionFetching;
-import com.acme.appdeploy.dao.config.model.TVersionFetchingNginx;
-import com.acme.appdeploy.dao.config.model.VersionFetchingType;
+import com.acme.appdeploy.core.dao.config.IConfigAppDao;
+import com.acme.appdeploy.core.dao.config.IConfigAuthDao;
+import com.acme.appdeploy.core.dao.config.entity.TApp;
+import com.acme.appdeploy.core.dao.config.model.TVersionFetching;
+import com.acme.appdeploy.core.dao.config.model.VersionFetchingType;
 import com.acme.appdeploy.ui.service.version.IAppVersionService;
 import com.acme.appdeploy.ui.service.version.messages.AppViewRequest;
 import com.acme.appdeploy.ui.service.version.messages.AvailableAppVersionsResponse;

@@ -1,9 +1,9 @@
 package com.acme.appdeploy.ui.service.version.impl;
 
 
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.entity.TAuthBasic;
-import com.acme.appdeploy.dao.config.model.TVersionFetchingMavenMetadataXml;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.entity.TAuthBasic;
+import com.acme.appdeploy.core.dao.config.model.TVersionFetchingMavenMetadataXml;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 
 import java.util.List;

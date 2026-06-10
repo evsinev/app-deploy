@@ -1,10 +1,10 @@
 package com.acme.appdeploy;
 
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
-import com.acme.appdeploy.dao.config.IConfigAuthDao;
-import com.acme.appdeploy.dao.config.impl.ConfigAddDaoImpl;
-import com.acme.appdeploy.dao.config.impl.ConfigAuthDaoImpl;
+import com.acme.appdeploy.core.dao.config.IConfigAppDao;
+import com.acme.appdeploy.core.dao.config.IConfigAuthDao;
+import com.acme.appdeploy.core.dao.config.impl.ConfigAddDaoImpl;
+import com.acme.appdeploy.core.dao.config.impl.ConfigAuthDaoImpl;
 import com.acme.appdeploy.dao.deploylog.IDeployLogDao;
 import com.acme.appdeploy.dao.deploylog.impl.DeployLogDaoImpl;
 import com.acme.appdeploy.service.deploy.IDeployService;

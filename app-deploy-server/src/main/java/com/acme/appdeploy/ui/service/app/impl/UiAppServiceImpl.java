@@ -1,6 +1,6 @@
 package com.acme.appdeploy.ui.service.app.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
+import com.acme.appdeploy.core.dao.config.IConfigAppDao;
 import com.acme.appdeploy.ui.service.app.IUiAppService;
 import com.acme.appdeploy.ui.service.app.messages.UiAppListResponse;
 import com.acme.appdeploy.ui.service.app.messages.UiAppViewResponse;

@@ -1,9 +1,9 @@
 package com.acme.appdeploy.service.deploy.impl;
 
-import com.acme.appdeploy.dao.config.entity.*;
+import com.acme.appdeploy.core.dao.config.entity.*;
 import com.acme.appdeploy.dao.deploylog.model.DeployStatus;
 import com.acme.appdeploy.service.http.IHttpService;
-import com.acme.appdeploy.util.SafeFiles;
+import com.acme.appdeploy.core.util.SafeFiles;
 import com.acme.appdeploy.util.SizeFormatter;
 import org.slf4j.MDC;
 

@@ -1,8 +1,8 @@
 package com.acme.appdeploy.ui.service.app.impl;
 
-import com.acme.appdeploy.dao.config.entity.TApp;
-import com.acme.appdeploy.dao.config.entity.TAppEnv;
-import com.acme.appdeploy.dao.config.entity.TAppInstance;
+import com.acme.appdeploy.core.dao.config.entity.TApp;
+import com.acme.appdeploy.core.dao.config.entity.TAppEnv;
+import com.acme.appdeploy.core.dao.config.entity.TAppInstance;
 import com.acme.appdeploy.ui.service.app.model.UiAppItem;
 
 import java.util.ArrayList;

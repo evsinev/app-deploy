@@ -1,9 +1,9 @@
 package com.acme.appdeploy.ui.service.appstatus.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
-import com.acme.appdeploy.dao.config.IConfigAuthDao;
-import com.acme.appdeploy.dao.config.model.AppStatusType;
-import com.acme.appdeploy.dao.config.model.TAppStatus;
+import com.acme.appdeploy.core.dao.config.IConfigAppDao;
+import com.acme.appdeploy.core.dao.config.IConfigAuthDao;
+import com.acme.appdeploy.core.dao.config.model.AppStatusType;
+import com.acme.appdeploy.core.dao.config.model.TAppStatus;
 import com.acme.appdeploy.service.appstatus.IAppStatusClient;
 import com.acme.appdeploy.service.appstatus.impl.AppStatusClientImpl;
 import com.acme.appdeploy.service.appstatus.messages.AppStatusResponse;

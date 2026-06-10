@@ -1,11 +1,9 @@
 package com.acme.appdeploy.ui.service.deploy.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
 import com.acme.appdeploy.dao.deploylog.IDeployLogDao;
 import com.acme.appdeploy.dao.deploylog.entity.TDeploy;
 import com.acme.appdeploy.dao.deploylog.entity.TDeployLogEvent;
 import com.acme.appdeploy.service.deploy.IDeployService;
-import com.acme.appdeploy.ui.service.appstatus.IUiAppStatusService;
 import com.acme.appdeploy.ui.service.deploy.IUiDeployService;
 import com.acme.appdeploy.ui.service.deploy.messages.*;
 import com.acme.appdeploy.ui.service.deploy.model.DeployListItem;

@@ -1,6 +1,6 @@
 package com.acme.appdeploy.service.deploy.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAppDao;
+import com.acme.appdeploy.core.dao.config.IConfigAppDao;
 import com.acme.appdeploy.dao.deploylog.IDeployLogDao;
 import com.acme.appdeploy.dao.deploylog.entity.TDeploy;
 import com.acme.appdeploy.dao.deploylog.model.DeployStatus;
@@ -13,7 +13,6 @@ import com.acme.appdeploy.ui.service.appstatus.IUiAppStatusService;
 import com.acme.appdeploy.util.Arns;
 
 import java.net.http.HttpClient;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

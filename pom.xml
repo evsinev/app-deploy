@@ -8,6 +8,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <modules>
+        <module>app-deploy-config</module>
         <module>app-deploy-server</module>
     </modules>
 
@@ -15,20 +16,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>21</java.version>
 
-        <mini.version>2.0-SNAPSHOT</mini.version>
+        <mini.version>2.0-3</mini.version>
 
         <slf4j.version>2.0.17</slf4j.version>
         <logback.version>1.5.18</logback.version>
     </properties>
 
-
-    <distributionManagement>
-        <site>
-            <id>local-site</id>
-            <name>Store only on local disk</name>
-            <url>file:///tmp/app-deploy</url>
-        </site>
-    </distributionManagement>
 
     <repositories>
         <repository>
@@ -42,9 +35,15 @@
         <dependencies>
 
             <dependency>
+                <groupId>com.acme.app-deploy</groupId>
+                <artifactId>app-deploy-config</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
                 <groupId>com.payneteasy.mini-framework</groupId>
                 <artifactId>mini-core</artifactId>
-                <version>2.0-SNAPSHOT</version>
+                <version>${mini.version}</version>
             </dependency>
 
             <dependency>

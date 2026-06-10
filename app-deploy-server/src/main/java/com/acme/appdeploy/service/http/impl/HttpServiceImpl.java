@@ -1,8 +1,8 @@
 package com.acme.appdeploy.service.http.impl;
 
-import com.acme.appdeploy.dao.config.IConfigAuthDao;
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.entity.TAuthBasic;
+import com.acme.appdeploy.core.dao.config.IConfigAuthDao;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.entity.TAuthBasic;
 import com.acme.appdeploy.service.http.IHttpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

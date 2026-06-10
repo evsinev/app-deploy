@@ -1,7 +1,7 @@
 package com.acme.appdeploy.ui.service.version.impl;
 
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.model.TVersionFetchingMavenMetadataXml;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.model.TVersionFetchingMavenMetadataXml;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,6 @@ import java.util.List;
 
 import static com.acme.appdeploy.util.HttpAuths.fetchHttpWithAuth;
 import static com.acme.appdeploy.util.SizeFormatter.formatSize;
-import static com.acme.appdeploy.util.VersionNumbers.versionNumber;
 import static com.acme.appdeploy.util.VersionNumbers.versionNumberDynamic;
 import static com.payneteasy.jetty.util.Strings.hasText;
 import static com.payneteasy.jetty.util.Strings.isEmpty;

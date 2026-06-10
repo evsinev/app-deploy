@@ -1,9 +1,9 @@
 package com.acme.appdeploy.ui.service.version.impl;
 
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.entity.TAuthBasic;
-import com.acme.appdeploy.dao.config.model.AuthType;
-import com.acme.appdeploy.dao.config.model.TVersionFetchingNginx;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.entity.TAuthBasic;
+import com.acme.appdeploy.core.dao.config.model.AuthType;
+import com.acme.appdeploy.core.dao.config.model.TVersionFetchingNginx;
 import com.acme.appdeploy.ui.service.version.model.AppVersionItem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

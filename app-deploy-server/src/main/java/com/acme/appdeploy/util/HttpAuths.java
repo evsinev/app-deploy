@@ -1,7 +1,7 @@
 package com.acme.appdeploy.util;
 
-import com.acme.appdeploy.dao.config.entity.TAuth;
-import com.acme.appdeploy.dao.config.entity.TAuthBasic;
+import com.acme.appdeploy.core.dao.config.entity.TAuth;
+import com.acme.appdeploy.core.dao.config.entity.TAuthBasic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
