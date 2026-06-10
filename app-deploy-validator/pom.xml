@@ -25,6 +25,11 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
@@ -33,32 +38,6 @@
         <dependency>
             <groupId>org.snakeyaml</groupId>
             <artifactId>snakeyaml-engine</artifactId>
-        </dependency>
-
-        <!-- SLF4j -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>log4j-over-slf4j</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
         </dependency>
 
         <!-- TEST -->
@@ -82,7 +61,7 @@
 
     <profiles>
         <profile>
-            <id>shaded</id>
+            <id>validator-shaded</id>
             <build>
                 <plugins>
                     <plugin>
@@ -97,7 +76,9 @@
                                 </goals>
                                 <configuration>
 
-                                    <finalName>app-deploy-shaded</finalName>
+                                    <finalName>app-deploy-cli</finalName>
+
+                                    <minimizeJar>true</minimizeJar>
 
                                     <relocations>
                                         <relocation>
@@ -109,7 +90,7 @@
                                     <transformers>
                                         <transformer
                                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>com.acme.appdeploy.AppDeployApplication</mainClass>
+                                            <mainClass>com.acme.appdeploy.cli.AppDeployCli</mainClass>
                                         </transformer>
                                     </transformers>
 
@@ -119,6 +100,11 @@
                                             <excludes>
                                                 <exclude>META-INF/maven/**</exclude>
                                             </excludes>
+                                        </filter>
+                                        <!-- gson maps YAML into entities via reflection; keep it fully so minimizeJar does not prune needed adapters -->
+                                        <filter>
+                                            <artifact>com.google.code.gson:gson</artifact>
+                                            <includes><include>**</include></includes>
                                         </filter>
                                     </filters>
 

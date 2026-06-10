@@ -4,14 +4,10 @@ import com.acme.appdeploy.core.dao.config.IConfigAuthDao;
 import com.acme.appdeploy.core.dao.config.entity.TAuth;
 import com.acme.appdeploy.core.dao.config.entity.TAuthStorage;
 import com.payneteasy.yaml2json.YamlParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
 public class ConfigAuthDaoImpl implements IConfigAuthDao {
-
-    private static final Logger LOG = LoggerFactory.getLogger( ConfigAuthDaoImpl.class );
 
     private final YamlParser yamlParser = new YamlParser();
 
@@ -23,7 +19,6 @@ public class ConfigAuthDaoImpl implements IConfigAuthDao {
 
     @Override
     public TAuth findAuthById(String id) {
-        LOG.debug("Loading auths from {}", authsFile);
         TAuthStorage storage = yamlParser.parseFile(authsFile, TAuthStorage.class);
 
         return storage.getAuths()

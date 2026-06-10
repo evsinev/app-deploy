@@ -1,0 +1,34 @@
+appId: app1
+
+versionFetching:
+  type: MAVEN_METADATA_XML
+  mavenMetadataXml:
+    url     : https://repo.example/x/maven-metadata.xml
+    authRef : basic-1
+
+artifact:
+  artifactUrl : https://repo.example/x/{{ APP_VERSION }}/x-{{ APP_VERSION }}.jar
+  authRef     : basic-1
+
+envs:
+  - envName: prod
+    instances:
+      - instanceName: prod-1
+        appStatus:
+          url     : https://host.example/app-status
+          authRef : token-1
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : https://agent.example/dc-agent/jar/prod-1
+            authRef : key-1
+
+      - instanceName: prod-2
+        appStatus:
+          type : VERSION_TXT
+          url  : https://host.example/version.txt
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : https://agent.example/dc-agent/jar/prod-2
+            authRef : key-1

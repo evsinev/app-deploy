@@ -2,12 +2,13 @@ package com.acme.appdeploy.core.dao.config.impl;
 
 import com.acme.appdeploy.core.dao.config.IConfigAppDao;
 import com.acme.appdeploy.core.dao.config.entity.TApp;
-import com.acme.appdeploy.core.util.SafeFiles;
 import com.payneteasy.yaml2json.YamlParser;
 
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
+
+import static com.acme.appdeploy.core.util.ListFiles.listSortedFiles;
 
 public class ConfigAddDaoImpl implements IConfigAppDao {
 
@@ -21,7 +22,7 @@ public class ConfigAddDaoImpl implements IConfigAppDao {
 
     @Override
     public List<TApp> listAllApps() {
-        return SafeFiles.listSortedFiles(appsDir, file -> file.isFile() && file.getName().endsWith(".yaml"))
+        return listSortedFiles(appsDir, file -> file.isFile() && file.getName().endsWith(".yaml"))
                 .stream()
                 .map(this::loadYaml)
                 .toList();
@@ -38,4 +39,5 @@ public class ConfigAddDaoImpl implements IConfigAppDao {
     private TApp loadYaml(File aFile) {
         return yamlParser.parseFile(aFile, TApp.class);
     }
+
 }

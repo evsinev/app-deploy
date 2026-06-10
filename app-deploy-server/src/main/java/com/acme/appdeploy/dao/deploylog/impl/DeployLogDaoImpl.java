@@ -6,12 +6,12 @@ import com.acme.appdeploy.dao.deploylog.entity.TDeployLogEvent;
 import com.acme.appdeploy.dao.deploylog.model.DeployStatus;
 import com.acme.appdeploy.util.GsonFile;
 import com.acme.appdeploy.util.ReadWriteLockSupport;
-import com.acme.appdeploy.core.util.SafeFiles;
+import com.acme.appdeploy.util.SafeFiles;
 
 import java.io.File;
 import java.util.List;
 
-import static com.acme.appdeploy.core.util.SafeFiles.listSortedFiles;
+import static com.acme.appdeploy.util.SafeFiles.listSortedFiles;
 import static com.acme.appdeploy.util.Sequences.nextDeployLogId;
 
 public class DeployLogDaoImpl implements IDeployLogDao {

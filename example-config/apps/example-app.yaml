@@ -1,7 +1,7 @@
 appId: example-app
 
 versionFetching:
-  fetchType: FETCH_NGINX
+  type: NGINX_DIR
   nginx:
     dirUrl : http://localhost:2301/app-deploy/mock/nginx
     authRef: auth-example-basic-1
@@ -23,7 +23,7 @@ envs:
           deployType: DEPLOY_DC_AGENT_URL
           dcAgentUrl:
             url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-1
-            authRef : auth-example-api-key-1
+            authRef : auth-example-api-key
 
       - instanceName: test-2
         appStatus:
@@ -33,7 +33,7 @@ envs:
           deployType: DEPLOY_DC_AGENT_URL
           dcAgentUrl:
             url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-2
-            authRef : auth-example-api-key-1
+            authRef : auth-example-api-key
 
   - envName: production
     instances:
@@ -45,7 +45,7 @@ envs:
           deployType: DEPLOY_DC_AGENT_URL
           dcAgentUrl:
             url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-1
-            authRef : auth-example-api-key-1
+            authRef : auth-example-api-key
 
       - instanceName: prod-2
         appStatus:
@@ -55,4 +55,4 @@ envs:
           deployType: DEPLOY_DC_AGENT_URL
           dcAgentUrl:
             url     : http://localhost:2301/app-deploy/mock/dc-agent/jar/example-app-2
-            authRef : auth-example-api-key-1
+            authRef : auth-example-api-key

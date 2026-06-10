@@ -1,0 +1,6 @@
+auths:
+  - authId   : basic-1
+    authType : AUTH_BASIC
+    basic:
+      username: u
+      password: p

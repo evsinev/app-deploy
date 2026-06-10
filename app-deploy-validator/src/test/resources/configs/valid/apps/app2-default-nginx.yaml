@@ -1,0 +1,39 @@
+appId: app2
+
+# no type -> defaults to NGINX_DIR
+versionFetching:
+  nginx:
+    dirUrl  : https://host.example/dir
+    prefix  : app2-
+    suffix  : .jar
+    authRef : basic-1
+
+artifact:
+  artifactUrl : https://repo.example/app2/{{ APP_VERSION }}.jar
+  authRef     : basic-1
+
+envs:
+  # repeated envName is allowed: uniqueness is the (envName, instanceName) pair
+  - envName: prod
+    instances:
+      - instanceName: prod-1
+        appStatus:
+          type : VERSION_TXT
+          url  : https://host.example/version.txt
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : https://agent.example/dc-agent/jar/app2-prod-1
+            authRef : key-1
+
+  - envName: prod
+    instances:
+      - instanceName: prod-2
+        appStatus:
+          type : VERSION_TXT
+          url  : https://host.example/version.txt
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : https://agent.example/dc-agent/jar/app2-prod-2
+            authRef : key-1

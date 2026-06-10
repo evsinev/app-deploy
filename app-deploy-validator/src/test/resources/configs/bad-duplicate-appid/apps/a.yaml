@@ -1,0 +1,24 @@
+appId: dup
+
+versionFetching:
+  type: NGINX_DIR
+  nginx:
+    dirUrl  : https://host.example/dir
+    authRef : basic-1
+
+artifact:
+  artifactUrl : https://repo.example/x/{{ APP_VERSION }}.jar
+  authRef     : basic-1
+
+envs:
+  - envName: prod
+    instances:
+      - instanceName: prod-1
+        appStatus:
+          type : VERSION_TXT
+          url  : https://host.example/version.txt
+        deploy:
+          deployType: DEPLOY_DC_AGENT_URL
+          dcAgentUrl:
+            url     : https://agent.example/dc-agent/jar/prod-1
+            authRef : basic-1

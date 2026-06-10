@@ -10,6 +10,7 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(makeFinal = true, level = PRIVATE)
 @Builder
 public class TVersionFetching {
+    // optional; defaults to NGINX_DIR when absent
     VersionFetchingType              type;
 
     TVersionFetchingNginx            nginx;
