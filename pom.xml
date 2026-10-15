@@ -80,7 +80,7 @@
                 <version>2.14.0</version>
             </dependency>
 
-            <!-- Jetty, micrometer and jakarta.el come in through mini-core / jetty-util; pinned here to patched versions -->
+            <!-- Jetty and micrometer come in through mini-core / jetty-util; pinned here to patched versions -->
             <dependency>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-bom</artifactId>
@@ -102,10 +102,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- hibernate-validator comes in through mini-core (ApiRequestValidator); 7.0.x has no fix for
+                 CVE-2026-93879 (EL re-evaluation of message parameters, HV-2256), first fixed 8.0.x is 8.0.6.Final.
+                 8.0 keeps the jakarta.validation 3.0 namespace but needs a Jakarta EL 5.0 implementation (Expressly). -->
             <dependency>
-                <groupId>org.glassfish</groupId>
-                <artifactId>jakarta.el</artifactId>
-                <version>4.0.2</version>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>8.0.6.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.expressly</groupId>
+                <artifactId>expressly</artifactId>
+                <version>5.0.0</version>
             </dependency>
 
             <!-- SLF4J -->
